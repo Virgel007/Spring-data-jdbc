@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>com.book.springboot</groupId>
-    <artifactId>SpringBookAndAuthor</artifactId>
+    <artifactId>Spring-data-jdbc</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>SpringBookAndAuthor</name>
+    <name>Spring-data-jdbc</name>
     <description>Demo project for Spring Boot</description>
     <url/>
     <licenses>

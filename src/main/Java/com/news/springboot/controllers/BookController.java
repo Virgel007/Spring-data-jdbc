@@ -15,6 +15,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 public class BookController {
+
     private final BookService bookService;
 
 
@@ -31,9 +32,9 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> createBook(@RequestBody Book book) {
-        Book createdBook = bookService.create(book);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdBook);
+    public ResponseEntity<Void> createBook(@RequestBody Book book) {
+        bookService.create(book);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/{id}")

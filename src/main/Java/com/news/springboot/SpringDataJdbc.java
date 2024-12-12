@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBookAndAuthorApplication {
+public class SpringDataJdbc {
     public static void main(String[] args) {
-        SpringApplication.run(SpringBookAndAuthorApplication.class, args);
+        SpringApplication.run(SpringDataJdbc.class, args);
 
     }
 }

@@ -1,7 +1,8 @@
 package com.news.springboot.services;
 
+
 import com.news.springboot.entity.Book;
-import com.news.springboot.repositories.BookRepositories;
+import com.news.springboot.repositories.BookRepoJdbcTemplate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -15,32 +16,30 @@ import java.util.Optional;
 @Service
 public class BookService {
 
-    private final BookRepositories bookRepositories;
+    private final BookRepoJdbcTemplate bookRepositories;
 
     public Page<Book> getAllPaged(Pageable pageable) {
-        return bookRepositories.findAll(pageable);
+        return bookRepositories.getAllPaged(pageable);
     }
 
     public Optional<Book> getById(Integer id) {
-        return bookRepositories.findById(id);
+        Book book = bookRepositories.getById(id);
+        return Optional.ofNullable(book);
     }
 
-    public Book create(Book book) {
-        return bookRepositories.save(book);
+    public void create(Book book) {
+        bookRepositories.create(book);
     }
 
     public Optional<Book> update(Integer id, Book book) {
-        if (bookRepositories.existsById(id)) {
-            Book entity = bookRepositories.getById(id);
-            entity.setTitle(book.getTitle());
-            entity.setAuthor(book.getAuthor());
-            return Optional.of(bookRepositories.save(entity));
-        }
-        return Optional.empty();
+            Book book1 = bookRepositories.getById(id);
+            book1.setTitle(book.getTitle());
+            book1.setAuthor(book.getAuthor());
+            bookRepositories.create(book1);
+            return Optional.of(book1);
     }
 
     public void delete(Integer id) {
-        bookRepositories.deleteById(id);
+        bookRepositories.delete(id);
     }
-
 }
